@@ -14,10 +14,19 @@
   "contributes": {
     "commands": [
       {
-        "command": "utei.helloWorld",
-        "title": "Hello World"
+        "command": "utei.generateUnitTestFromHighlightedCode",
+        "title": "Generate"
       }
-    ]
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "command": "utei.generateUnitTestFromHighlightedCode",
+          "group": "navigation",
+          "title": "Generate UnitTest From Highlighted Code"
+        }
+      ]
+    }
   },
   "scripts": {
     "vscode:prepublish": "npm run package",
@@ -45,5 +54,8 @@
     "typescript": "^5.3.3",
     "webpack": "^5.90.0",
     "webpack-cli": "^5.1.4"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.4"
   }
 }
