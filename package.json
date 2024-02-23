@@ -14,19 +14,211 @@
   "contributes": {
     "commands": [
       {
-        "command": "utei.generateUnitTestFromHighlightedCode",
-        "title": "Generate"
+        "command": "utei.generateCSharpNUnit",
+        "title": "NUnit"
+      },
+      {
+        "command": "utei.generateCSharpXUnit",
+        "title": "XUnit"
+      },
+      {
+        "command": "utei.generateCSharpMSTest",
+        "title": "MSTest"
+      },
+      {
+        "command": "utei.generateCSharpMoq",
+        "title": "Moq"
+      },
+      {
+        "command": "utei.generateCSharpNSubstitute",
+        "title": "NSubstitute"
+      },
+      {
+        "command": "utei.generateCSharpFluentAssertions",
+        "title": "FluentAssertions"
       }
     ],
     "menus": {
       "editor/context": [
         {
-          "command": "utei.generateUnitTestFromHighlightedCode",
-          "group": "navigation",
-          "title": "Generate UnitTest From Highlighted Code"
+          "when": "editorLangId == csharp",
+          "submenu": "generateCSharpUnitTest",
+          "group": "navigation"
+        },
+        {
+          "when": "editorLangId == java",
+          "submenu": "generateJavaUnitTest",
+          "group": "navigation"
+        },
+        {
+          "when": "editorLangId == python",
+          "submenu": "generatePythonUnitTest",
+          "group": "navigation"
+        },
+        {
+          "when": "editorLangId == javascript",
+          "submenu": "generateJavaScriptUnitTest",
+          "group": "navigation"
+        },
+        {
+          "when": "editorLangId == cpp",
+          "submenu": "generateCppScriptUnitTest",
+          "group": "navigation"
+        }
+      ],
+      "generateCSharpUnitTest": [
+        {
+          "command": "utei.generateCSharpNUnit",
+          "title": "NUnit"
+        },
+        {
+          "command": "utei.generateCSharpXUnit",
+          "title": "XUnit"
+        },
+        {
+          "command": "utei.generateCSharpMSTest",
+          "title": "MSTest"
+        },
+        {
+          "command": "utei.generateCSharpMoq",
+          "title": "Moq"
+        },
+        {
+          "command": "utei.generateCSharpNSubstitute",
+          "title": "NSubstitute"
+        },
+        {
+          "command": "utei.generateCSharpFluentAssertions",
+          "title": "FluentAssertions"
+        }
+      ],
+      "generateJavaUnitTest": [
+        {
+          "command": "utei.generateCSharpNUnit",
+          "title": "NUnit"
+        },
+        {
+          "command": "utei.generateCSharpXUnit",
+          "title": "XUnit"
+        },
+        {
+          "command": "utei.generateCSharpMSTest",
+          "title": "MSTest"
+        },
+        {
+          "command": "utei.generateCSharpMoq",
+          "title": "Moq"
+        },
+        {
+          "command": "utei.generateCSharpNSubstitute",
+          "title": "NSubstitute"
+        },
+        {
+          "command": "utei.generateCSharpFluentAssertions",
+          "title": "FluentAssertions"
+        }
+      ],
+      "generatePythonUnitTest": [
+        {
+          "command": "utei.generateCSharpNUnit",
+          "title": "NUnit"
+        },
+        {
+          "command": "utei.generateCSharpXUnit",
+          "title": "XUnit"
+        },
+        {
+          "command": "utei.generateCSharpMSTest",
+          "title": "MSTest"
+        },
+        {
+          "command": "utei.generateCSharpMoq",
+          "title": "Moq"
+        },
+        {
+          "command": "utei.generateCSharpNSubstitute",
+          "title": "NSubstitute"
+        },
+        {
+          "command": "utei.generateCSharpFluentAssertions",
+          "title": "FluentAssertions"
+        }
+      ],
+      "generateJavaScriptUnitTest": [
+        {
+          "command": "utei.generateCSharpNUnit",
+          "title": "NUnit"
+        },
+        {
+          "command": "utei.generateCSharpXUnit",
+          "title": "XUnit"
+        },
+        {
+          "command": "utei.generateCSharpMSTest",
+          "title": "MSTest"
+        },
+        {
+          "command": "utei.generateCSharpMoq",
+          "title": "Moq"
+        },
+        {
+          "command": "utei.generateCSharpNSubstitute",
+          "title": "NSubstitute"
+        },
+        {
+          "command": "utei.generateCSharpFluentAssertions",
+          "title": "FluentAssertions"
+        }
+      ],
+      "generateCppScriptUnitTest": [
+        {
+          "command": "utei.generateCSharpNUnit",
+          "title": "NUnit"
+        },
+        {
+          "command": "utei.generateCSharpXUnit",
+          "title": "XUnit"
+        },
+        {
+          "command": "utei.generateCSharpMSTest",
+          "title": "MSTest"
+        },
+        {
+          "command": "utei.generateCSharpMoq",
+          "title": "Moq"
+        },
+        {
+          "command": "utei.generateCSharpNSubstitute",
+          "title": "NSubstitute"
+        },
+        {
+          "command": "utei.generateCSharpFluentAssertions",
+          "title": "FluentAssertions"
         }
       ]
-    }
+    },
+    "submenus": [
+      {
+        "id": "generateCSharpUnitTest",
+        "label": "Generate C# Unit Test"
+      },
+      {
+        "id": "generateJavaUnitTest",
+        "label": "Generate Java Unit Test"
+      },
+      {
+        "id": "generatePythonUnitTest",
+        "label": "Generate Python Unit Test"
+      },
+      {
+        "id": "generateJavaScriptUnitTest",
+        "label": "Generate JavaScript Unit Test"
+      },
+      {
+        "id": "generateCppScriptUnitTest",
+        "label": "Generate C++ Unit Test"
+      }
+    ]
   },
   "scripts": {
     "vscode:prepublish": "npm run package",

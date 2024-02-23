@@ -59,14 +59,11 @@ export async function gptRequestHandler(
         try {
           const responseContent: OpenAIResponse = JSON.parse(data)
           if (responseContent.choices && responseContent.choices.length > 0) {
-            console.log('1')
             const completion = responseContent.choices[0]
             if (completion.message && completion.message.content) {
-              console.log('2')
               const generatedText = completion.message.content.trim()
               resolve(generatedText)
             } else {
-              console.log('3')
               reject('No message content found in the response.')
             }
           } else {
@@ -74,7 +71,6 @@ export async function gptRequestHandler(
             reject('No response content or choices found.')
           }
         } catch (error) {
-          console.log('-2')
           reject(`Error parsing JSON response: ${error}`)
         }
       })
@@ -82,7 +78,6 @@ export async function gptRequestHandler(
     console.log(req)
 
     req.on('error', (error) => {
-      console.log('-3')
       reject(`Request error: ${error}`)
     })
 
