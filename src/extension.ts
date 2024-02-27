@@ -11,12 +11,46 @@ enum Framework {
   FluentAssertions = 'FluentAssertions',
 
   // Java
+  JUnit = 'JUnit',
+  TestNG = 'TestNG',
+  Mockito = 'Mockito',
+  PowerMock = 'PowerMock',
+  AssertJ = 'AssertJ',
+  Hamcrest = 'Hamcrest',
+  Jmockit = 'Jmockit',
+
+  // JavaScript
+  Jasmine = 'Jasmine',
+  Mocha = 'Mocha',
+  Jest = 'Jest',
+  QUnit = 'QUnit',
+  Ava = 'Ava',
+  Tape = 'Tape',
+  Karma = 'Karma',
+  Cypress = 'Cypress',
+
+  // Python
+  Unittest = 'Unittest',
+  Pytest = 'Pytest',
+  Nose2 = 'Nose2',
+  Doctest = 'Doctest',
+  Tox = 'Tox',
+  Hypothesis = 'Hypothesis',
+  Robotframework = 'Robotframework',
+  Testify = 'Testify',
+
+  // Adding C++ testing frameworks
+  GoogleTest = 'GoogleTest',
+  Catch2 = 'Catch2',
+  BoostTest = 'BoostTest',
+  CppUTest = 'CppUTest',
+  UnitTestPP = 'UnitTestPP',
+  Igloo = 'Igloo',
+  CppUnit = 'CppUnit',
 }
 
 export function activate(context: vscode.ExtensionContext) {
-  console.log('Congratulations, your extension "utei" is now active!')
-
-  // Register commands for generating unit tests for different frameworks
+  // C#
   registerUnitTestCommand(context, 'utei.generateCSharpNUnit', Framework.NUnit)
   registerUnitTestCommand(context, 'utei.generateCSharpXUnit', Framework.XUnit)
   registerUnitTestCommand(
@@ -35,6 +69,127 @@ export function activate(context: vscode.ExtensionContext) {
     'utei.generateCSharpFluentAssertions',
     Framework.FluentAssertions,
   )
+
+  // Java
+  registerUnitTestCommand(context, 'utei.generateJavaJUnit', Framework.JUnit)
+  registerUnitTestCommand(context, 'utei.generateJavaTestNG', Framework.TestNG)
+  registerUnitTestCommand(
+    context,
+    'utei.generateJavaMockito',
+    Framework.Mockito,
+  )
+  registerUnitTestCommand(
+    context,
+    'utei.generateJavaPowerMock',
+    Framework.PowerMock,
+  )
+  registerUnitTestCommand(
+    context,
+    'utei.generateJavaAssertJ',
+    Framework.AssertJ,
+  )
+  registerUnitTestCommand(
+    context,
+    'utei.generateJavaHamcrest',
+    Framework.Hamcrest,
+  )
+  registerUnitTestCommand(
+    context,
+    'utei.generateJavaJmockit',
+    Framework.Jmockit,
+  )
+
+  // JavaScript
+  registerUnitTestCommand(
+    context,
+    'utei.generateJavaScriptJasmine',
+    Framework.Jasmine,
+  )
+  registerUnitTestCommand(
+    context,
+    'utei.generateJavaScriptMocha',
+    Framework.Mocha,
+  )
+  registerUnitTestCommand(
+    context,
+    'utei.generateJavaScriptJest',
+    Framework.Jest,
+  )
+  registerUnitTestCommand(
+    context,
+    'utei.generateJavaScriptQUnit',
+    Framework.QUnit,
+  )
+  registerUnitTestCommand(context, 'utei.generateJavaScriptAva', Framework.Ava)
+  registerUnitTestCommand(
+    context,
+    'utei.generateJavaScriptTape',
+    Framework.Tape,
+  )
+  registerUnitTestCommand(
+    context,
+    'utei.generateJavaScriptKarma',
+    Framework.Karma,
+  )
+  registerUnitTestCommand(
+    context,
+    'utei.generateJavaScriptCypress',
+    Framework.Cypress,
+  )
+
+  // Python
+  registerUnitTestCommand(
+    context,
+    'utei.generatePythonUnittest',
+    Framework.Unittest,
+  )
+  registerUnitTestCommand(
+    context,
+    'utei.generatePythonPytest',
+    Framework.Pytest,
+  )
+  registerUnitTestCommand(context, 'utei.generatePythonNose2', Framework.Nose2)
+  registerUnitTestCommand(
+    context,
+    'utei.generatePythonDoctest',
+    Framework.Doctest,
+  )
+  registerUnitTestCommand(context, 'utei.generatePythonTox', Framework.Tox)
+  registerUnitTestCommand(
+    context,
+    'utei.generatePythonHypothesis',
+    Framework.Hypothesis,
+  )
+  registerUnitTestCommand(
+    context,
+    'utei.generatePythonRobotframework',
+    Framework.Robotframework,
+  )
+  registerUnitTestCommand(
+    context,
+    'utei.generatePythonTestify',
+    Framework.Testify,
+  )
+
+  // C++
+  registerUnitTestCommand(
+    context,
+    'utei.generateCppGoogleTest',
+    Framework.GoogleTest,
+  )
+  registerUnitTestCommand(context, 'utei.generateCppCatch2', Framework.Catch2)
+  registerUnitTestCommand(
+    context,
+    'utei.generateCppBoostTest',
+    Framework.BoostTest,
+  )
+  registerUnitTestCommand(
+    context,
+    'utei.generateCppCppUtest',
+    Framework.CppUTest,
+  )
+  registerUnitTestCommand(context, 'utei.generateCppIgloo', Framework.Igloo)
+  registerUnitTestCommand(context, 'utei.generateCppCppUnit', Framework.CppUnit)
 }
 
 function registerUnitTestCommand(

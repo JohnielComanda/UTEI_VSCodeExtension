@@ -36,6 +36,122 @@
       {
         "command": "utei.generateCSharpFluentAssertions",
         "title": "FluentAssertions"
+      },
+      {
+        "command": "utei.generateJavaJUnit",
+        "title": "JUnit"
+      },
+      {
+        "command": "utei.generateJavaTestNG",
+        "title": "TestNG"
+      },
+      {
+        "command": "utei.generateJavaMockito",
+        "title": "Mockito"
+      },
+      {
+        "command": "utei.generateJavaPowerMock",
+        "title": "PowerMock"
+      },
+      {
+        "command": "utei.generateJavaAssertJ",
+        "title": "AssertJ"
+      },
+      {
+        "command": "utei.generateJavaHamcrest",
+        "title": "Hamcrest"
+      },
+      {
+        "command": "utei.generateJavaJmockit",
+        "title": "Jmockit"
+      },
+      {
+        "command": "utei.generateJavaScriptJasmine",
+        "title": "Jasmine"
+      },
+      {
+        "command": "utei.generateJavaScriptMocha",
+        "title": "Mocha"
+      },
+      {
+        "command": "utei.generateJavaScriptJest",
+        "title": "Jest"
+      },
+      {
+        "command": "utei.generateJavaScriptQUnit",
+        "title": "QUnit"
+      },
+      {
+        "command": "utei.generateJavaScriptAva",
+        "title": "Ava"
+      },
+      {
+        "command": "utei.generateJavaScriptTape",
+        "title": "ScriptTape"
+      },
+      {
+        "command": "utei.generateJavaScriptKarma",
+        "title": "Karma"
+      },
+      {
+        "command": "utei.generateJavaScriptCypress",
+        "title": "Cypress"
+      },
+      {
+        "command": "utei.generatePythonUnittest",
+        "title": "Unittest"
+      },
+      {
+        "command": "utei.generatePythonPytest",
+        "title": "Pytest"
+      },
+      {
+        "command": "utei.generatePythonNose2",
+        "title": "Nose2"
+      },
+      {
+        "command": "utei.generatePythonDoctest",
+        "title": "Doctest"
+      },
+      {
+        "command": "utei.generatePythonTox",
+        "title": "PythonTox"
+      },
+      {
+        "command": "utei.generatePythonHypothesis",
+        "title": "Hypothesis"
+      },
+      {
+        "command": "utei.generatePythonRobotframework",
+        "title": "Robotframework"
+      },
+      {
+        "command": "utei.generatePythonTestify",
+        "title": "Testify"
+      },
+      {
+        "command": "utei.generateCppGoogleTest",
+        "title": "GoogleTest"
+      },
+      {
+        "command": "utei.generateCppCatch2",
+        "title": "Catch2"
+      },
+      {
+        "command": "utei.generateCppBoostTest",
+        "title": "BoostTest"
+      },
+      {
+        "command": "utei.generateCppCppUtest",
+        "title": "CppUtest"
+      },
+      {
+        "command": "utei.generateCppIgloo",
+        "title": "Igloo"
+      },
+      {
+        "command": "utei.generateCppCppUnit",
+        "title": "CppUnit"
       }
     ],
     "menus": {
@@ -94,106 +210,126 @@
       ],
       "generateJavaUnitTest": [
         {
-          "command": "utei.generateCSharpNUnit",
-          "title": "NUnit"
+          "command": "utei.generateJavaJUnit",
+          "title": "JUnit"
         },
         {
-          "command": "utei.generateCSharpXUnit",
-          "title": "XUnit"
+          "command": "utei.generateJavaTestNG",
+          "title": "TestNG"
         },
         {
-          "command": "utei.generateCSharpMSTest",
-          "title": "MSTest"
+          "command": "utei.generateJavaMockito",
+          "title": "Mockito"
         },
         {
-          "command": "utei.generateCSharpMoq",
-          "title": "Moq"
+          "command": "utei.generateJavaPowerMock",
+          "title": "PowerMock"
         },
         {
-          "command": "utei.generateCSharpNSubstitute",
-          "title": "NSubstitute"
+          "command": "utei.generateJavaAssertJ",
+          "title": "AssertJ"
         },
         {
-          "command": "utei.generateCSharpFluentAssertions",
-          "title": "FluentAssertions"
+          "command": "utei.generateJavaHamcrest",
+          "title": "Hamcrest"
+        },
+        {
+          "command": "utei.generateJavaJmockit",
+          "title": "Jmockit"
         }
       ],
       "generatePythonUnitTest": [
         {
-          "command": "utei.generateCSharpNUnit",
-          "title": "NUnit"
+          "command": "utei.generatePythonUnittest",
+          "title": "Unittest"
         },
         {
-          "command": "utei.generateCSharpXUnit",
-          "title": "XUnit"
+          "command": "utei.generatePythonPytest",
+          "title": "Pytest"
         },
         {
-          "command": "utei.generateCSharpMSTest",
-          "title": "MSTest"
+          "command": "utei.generatePythonNose2",
+          "title": "Nose2"
         },
         {
-          "command": "utei.generateCSharpMoq",
-          "title": "Moq"
+          "command": "utei.generatePythonDoctest",
+          "title": "Doctest"
         },
         {
-          "command": "utei.generateCSharpNSubstitute",
-          "title": "NSubstitute"
+          "command": "utei.generatePythonTox",
+          "title": "PythonTox"
         },
         {
-          "command": "utei.generateCSharpFluentAssertions",
-          "title": "FluentAssertions"
+          "command": "utei.generatePythonHypothesis",
+          "title": "Hypothesis"
+        },
+        {
+          "command": "utei.generatePythonRobotframework",
+          "title": "Robotframework"
+        },
+        {
+          "command": "utei.generatePythonTestify",
+          "title": "Testify"
         }
       ],
       "generateJavaScriptUnitTest": [
         {
-          "command": "utei.generateCSharpNUnit",
-          "title": "NUnit"
+          "command": "utei.generateJavaScriptJasmine",
+          "title": "Jasmine"
         },
         {
-          "command": "utei.generateCSharpXUnit",
-          "title": "XUnit"
+          "command": "utei.generateJavaScriptMocha",
+          "title": "Mocha"
         },
         {
-          "command": "utei.generateCSharpMSTest",
-          "title": "MSTest"
+          "command": "utei.generateJavaScriptJest",
+          "title": "Jest"
         },
         {
-          "command": "utei.generateCSharpMoq",
-          "title": "Moq"
+          "command": "utei.generateJavaScriptQUnit",
+          "title": "QUnit"
         },
         {
-          "command": "utei.generateCSharpNSubstitute",
-          "title": "NSubstitute"
+          "command": "utei.generateJavaScriptAva",
+          "title": "Ava"
         },
         {
-          "command": "utei.generateCSharpFluentAssertions",
-          "title": "FluentAssertions"
+          "command": "utei.generateJavaScriptTape",
+          "title": "ScriptTape"
+        },
+        {
+          "command": "utei.generateJavaScriptKarma",
+          "title": "Karma"
+        },
+        {
+          "command": "utei.generateJavaScriptCypress",
+          "title": "Cypress"
         }
       ],
       "generateCppScriptUnitTest": [
         {
-          "command": "utei.generateCSharpNUnit",
-          "title": "NUnit"
+          "command": "utei.generateCppGoogleTest",
+          "title": "GoogleTest"
         },
         {
-          "command": "utei.generateCSharpXUnit",
-          "title": "XUnit"
+          "command": "utei.generateCppCatch2",
+          "title": "Catch2"
         },
         {
-          "command": "utei.generateCSharpMSTest",
-          "title": "MSTest"
+          "command": "utei.generateCppBoostTest",
+          "title": "BoostTest"
         },
         {
-          "command": "utei.generateCSharpMoq",
-          "title": "Moq"
+          "command": "utei.generateCppCppUtest",
+          "title": "CppUtest"
         },
         {
-          "command": "utei.generateCSharpNSubstitute",
-          "title": "NSubstitute"
+          "command": "utei.generateCppIgloo",
+          "title": "Igloo"
         },
         {
-          "command": "utei.generateCSharpFluentAssertions",
-          "title": "FluentAssertions"
+          "command": "utei.generateCppCppUnit",
+          "title": "CppUnit"
         }
       ]
     },
