@@ -14,6 +14,14 @@
   "contributes": {
     "commands": [
       {
+        "command": "utei.askForApiKey",
+        "title": "Enter OpenAI Api Key"
+      },
+      {
+        "command": "utei.generateImprovedVersion",
+        "title": "Generate Enhanced Version"
+      },
+      {
         "command": "utei.generateCSharpNUnit",
         "title": "NUnit"
       },
@@ -156,6 +164,10 @@
     ],
     "menus": {
       "editor/context": [
+        {
+          "command": "utei.generateImprovedVersion",
+          "group": "navigation"
+        },
         {
           "when": "editorLangId == csharp",
           "submenu": "generateCSharpUnitTest",
@@ -384,6 +396,7 @@
     "webpack-cli": "^5.1.4"
   },
   "dependencies": {
-    "dotenv": "^16.4.4"
+    "dotenv": "^16.4.4",
+    "react-copy-to-clipboard": "^5.1.0"
   }
 }
