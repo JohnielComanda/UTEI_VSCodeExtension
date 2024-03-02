@@ -30,7 +30,6 @@ export async function gptRequestHandler(
     presence_penalty: 0.0,
   }
 
-  console.log('dotenv: ', process.env)
   const openAIApiKey = process.env.OPENAI_API_KEY
   console.log('API KEY: ', openAIApiKey)
   const apiUrl = 'https://api.openai.com/v1/chat/completions'

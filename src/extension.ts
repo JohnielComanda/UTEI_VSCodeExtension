@@ -1,296 +1,194 @@
 import * as vscode from 'vscode'
-import { gptRequestHandler } from './gptRequestHandler'
-
-enum Framework {
-  // CS  harp
-  NUnit = 'NUnit',
-  XUnit = 'XUnit',
-  MSTest = 'MSTest',
-  Moq = 'Moq',
-  NSubstitute = 'NSubstitute',
-  FluentAssertions = 'FluentAssertions',
-
-  // Java
-  JUnit = 'JUnit',
-  TestNG = 'TestNG',
-  Mockito = 'Mockito',
-  PowerMock = 'PowerMock',
-  AssertJ = 'AssertJ',
-  Hamcrest = 'Hamcrest',
-  Jmockit = 'Jmockit',
-
-  // JavaScript
-  Jasmine = 'Jasmine',
-  Mocha = 'Mocha',
-  Jest = 'Jest',
-  QUnit = 'QUnit',
-  Ava = 'Ava',
-  Tape = 'Tape',
-  Karma = 'Karma',
-  Cypress = 'Cypress',
-
-  // Python
-  Unittest = 'Unittest',
-  Pytest = 'Pytest',
-  Nose2 = 'Nose2',
-  Doctest = 'Doctest',
-  Tox = 'Tox',
-  Hypothesis = 'Hypothesis',
-  Robotframework = 'Robotframework',
-  Testify = 'Testify',
-
-  // Adding C++ testing frameworks
-  GoogleTest = 'GoogleTest',
-  Catch2 = 'Catch2',
-  BoostTest = 'BoostTest',
-  CppUTest = 'CppUTest',
-  UnitTestPP = 'UnitTestPP',
-  Igloo = 'Igloo',
-  CppUnit = 'CppUnit',
-}
+import * as registerUtils from './registerUtils'
 
 export function activate(context: vscode.ExtensionContext) {
-  // C#
-  registerUnitTestCommand(context, 'utei.generateCSharpNUnit', Framework.NUnit)
-  registerUnitTestCommand(context, 'utei.generateCSharpXUnit', Framework.XUnit)
-  registerUnitTestCommand(
+  // Register all C# command to be used in the menu
+  registerUtils.registerGenerateUnitTestCommand(
+    context,
+    'utei.generateCSharpNUnit',
+    registerUtils.Framework.NUnit,
+  )
+  registerUtils.registerGenerateUnitTestCommand(
+    context,
+    'utei.generateCSharpXUnit',
+    registerUtils.Framework.XUnit,
+  )
+  registerUtils.registerGenerateUnitTestCommand(
     context,
     'utei.generateCSharpMSTest',
-    Framework.MSTest,
+    registerUtils.Framework.MSTest,
   )
-  registerUnitTestCommand(context, 'utei.generateCSharpMoq', Framework.Moq)
-  registerUnitTestCommand(
+  registerUtils.registerGenerateUnitTestCommand(
+    context,
+    'utei.generateCSharpMoq',
+    registerUtils.Framework.Moq,
+  )
+  registerUtils.registerGenerateUnitTestCommand(
     context,
     'utei.generateCSharpNSubstitute',
-    Framework.NSubstitute,
+    registerUtils.Framework.NSubstitute,
   )
-  registerUnitTestCommand(
+  registerUtils.registerGenerateUnitTestCommand(
     context,
     'utei.generateCSharpFluentAssertions',
-    Framework.FluentAssertions,
+    registerUtils.Framework.FluentAssertions,
   )
 
-  // Java
-  registerUnitTestCommand(context, 'utei.generateJavaJUnit', Framework.JUnit)
-  registerUnitTestCommand(context, 'utei.generateJavaTestNG', Framework.TestNG)
-  registerUnitTestCommand(
+  // Register all Java command to be used in the menu
+  registerUtils.registerGenerateUnitTestCommand(
+    context,
+    'utei.generateJavaJUnit',
+    registerUtils.Framework.JUnit,
+  )
+  registerUtils.registerGenerateUnitTestCommand(
+    context,
+    'utei.generateJavaTestNG',
+    registerUtils.Framework.TestNG,
+  )
+  registerUtils.registerGenerateUnitTestCommand(
     context,
     'utei.generateJavaMockito',
-    Framework.Mockito,
+    registerUtils.Framework.Mockito,
   )
-  registerUnitTestCommand(
+  registerUtils.registerGenerateUnitTestCommand(
     context,
     'utei.generateJavaPowerMock',
-    Framework.PowerMock,
+    registerUtils.Framework.PowerMock,
   )
-  registerUnitTestCommand(
+  registerUtils.registerGenerateUnitTestCommand(
     context,
     'utei.generateJavaAssertJ',
-    Framework.AssertJ,
+    registerUtils.Framework.AssertJ,
   )
-  registerUnitTestCommand(
+  registerUtils.registerGenerateUnitTestCommand(
     context,
     'utei.generateJavaHamcrest',
-    Framework.Hamcrest,
+    registerUtils.Framework.Hamcrest,
   )
-  registerUnitTestCommand(
+  registerUtils.registerGenerateUnitTestCommand(
     context,
     'utei.generateJavaJmockit',
-    Framework.Jmockit,
+    registerUtils.Framework.Jmockit,
   )
 
-  // JavaScript
-  registerUnitTestCommand(
+  // Register all JavaScript command to be used in the menu
+  registerUtils.registerGenerateUnitTestCommand(
     context,
     'utei.generateJavaScriptJasmine',
-    Framework.Jasmine,
+    registerUtils.Framework.Jasmine,
   )
-  registerUnitTestCommand(
+  registerUtils.registerGenerateUnitTestCommand(
     context,
     'utei.generateJavaScriptMocha',
-    Framework.Mocha,
+    registerUtils.Framework.Mocha,
   )
-  registerUnitTestCommand(
+  registerUtils.registerGenerateUnitTestCommand(
     context,
     'utei.generateJavaScriptJest',
-    Framework.Jest,
+    registerUtils.Framework.Jest,
   )
-  registerUnitTestCommand(
+  registerUtils.registerGenerateUnitTestCommand(
     context,
     'utei.generateJavaScriptQUnit',
-    Framework.QUnit,
+    registerUtils.Framework.QUnit,
   )
-  registerUnitTestCommand(context, 'utei.generateJavaScriptAva', Framework.Ava)
-  registerUnitTestCommand(
+  registerUtils.registerGenerateUnitTestCommand(
+    context,
+    'utei.generateJavaScriptAva',
+    registerUtils.Framework.Ava,
+  )
+  registerUtils.registerGenerateUnitTestCommand(
     context,
     'utei.generateJavaScriptTape',
-    Framework.Tape,
+    registerUtils.Framework.Tape,
   )
-  registerUnitTestCommand(
+  registerUtils.registerGenerateUnitTestCommand(
     context,
     'utei.generateJavaScriptKarma',
-    Framework.Karma,
+    registerUtils.Framework.Karma,
   )
-  registerUnitTestCommand(
+  registerUtils.registerGenerateUnitTestCommand(
     context,
     'utei.generateJavaScriptCypress',
-    Framework.Cypress,
+    registerUtils.Framework.Cypress,
   )
 
-  // Python
-  registerUnitTestCommand(
+  // Register all Python command to be used in the menu
+  registerUtils.registerGenerateUnitTestCommand(
     context,
     'utei.generatePythonUnittest',
-    Framework.Unittest,
+    registerUtils.Framework.Unittest,
   )
-  registerUnitTestCommand(
+  registerUtils.registerGenerateUnitTestCommand(
     context,
     'utei.generatePythonPytest',
-    Framework.Pytest,
+    registerUtils.Framework.Pytest,
   )
-  registerUnitTestCommand(context, 'utei.generatePythonNose2', Framework.Nose2)
-  registerUnitTestCommand(
+  registerUtils.registerGenerateUnitTestCommand(
+    context,
+    'utei.generatePythonNose2',
+    registerUtils.Framework.Nose2,
+  )
+  registerUtils.registerGenerateUnitTestCommand(
     context,
     'utei.generatePythonDoctest',
-    Framework.Doctest,
+    registerUtils.Framework.Doctest,
   )
-  registerUnitTestCommand(context, 'utei.generatePythonTox', Framework.Tox)
-  registerUnitTestCommand(
+  registerUtils.registerGenerateUnitTestCommand(
+    context,
+    'utei.generatePythonTox',
+    registerUtils.Framework.Tox,
+  )
+  registerUtils.registerGenerateUnitTestCommand(
     context,
     'utei.generatePythonHypothesis',
-    Framework.Hypothesis,
+    registerUtils.Framework.Hypothesis,
   )
-  registerUnitTestCommand(
+  registerUtils.registerGenerateUnitTestCommand(
     context,
-    'utei.generatePythonRobotframework',
-    Framework.Robotframework,
+    'utei.generatePythonRobotregisterUtils.Framework',
+    registerUtils.Framework.Robotframework,
   )
-  registerUnitTestCommand(
+  registerUtils.registerGenerateUnitTestCommand(
     context,
     'utei.generatePythonTestify',
-    Framework.Testify,
+    registerUtils.Framework.Testify,
   )
 
-  // C++
-  registerUnitTestCommand(
+  // Register all C++ command to be used in the menu
+  registerUtils.registerGenerateUnitTestCommand(
     context,
     'utei.generateCppGoogleTest',
-    Framework.GoogleTest,
+    registerUtils.Framework.GoogleTest,
   )
-  registerUnitTestCommand(context, 'utei.generateCppCatch2', Framework.Catch2)
-  registerUnitTestCommand(
+  registerUtils.registerGenerateUnitTestCommand(
+    context,
+    'utei.generateCppCatch2',
+    registerUtils.Framework.Catch2,
+  )
+  registerUtils.registerGenerateUnitTestCommand(
     context,
     'utei.generateCppBoostTest',
-    Framework.BoostTest,
+    registerUtils.Framework.BoostTest,
   )
-  registerUnitTestCommand(
+  registerUtils.registerGenerateUnitTestCommand(
     context,
     'utei.generateCppCppUtest',
-    Framework.CppUTest,
+    registerUtils.Framework.CppUTest,
   )
-  registerUnitTestCommand(context, 'utei.generateCppIgloo', Framework.Igloo)
-  registerUnitTestCommand(context, 'utei.generateCppCppUnit', Framework.CppUnit)
-}
-
-function registerUnitTestCommand(
-  context: vscode.ExtensionContext,
-  command: string,
-  framework: Framework,
-) {
-  const disposable = vscode.commands.registerCommand(command, async () => {
-    const code = getCodeFromActiveEditor()
-    if (code) {
-      try {
-        const output = generateUnitTest(code, framework)
-        console.log(output)
-        promptForOutputDestination(output)
-      } catch (error) {
-        vscode.window.showErrorMessage('Error: ' + error)
-      }
-    }
-  })
-  context.subscriptions.push(disposable)
-}
-
-async function promptForOutputDestination(output: Promise<string>) {
-  const userInput = await vscode.window.showInputBox({
-    prompt:
-      'Do you want to use the output in a new file (Enter the name for the new file) or Escape to copy it in your clipboard?',
-    placeHolder: 'e.g., Test.cs',
-  })
-
-  if (userInput) {
-    vscode.window.showInformationMessage('Generating unit test...')
-    if (userInput != '') {
-      const newFileUri = vscode.Uri.joinPath(
-        vscode.workspace.workspaceFolders![0].uri,
-        userInput,
-      )
-      vscode.window.showInformationMessage('Creating a new file...')
-
-      await vscode.workspace.fs.writeFile(newFileUri, Buffer.from(await output))
-
-      vscode.window.showInformationMessage(`New file "${userInput}" created.`)
-    } else {
-      vscode.window.showErrorMessage('Invalid file name.')
-    }
-  } else if (userInput === undefined) {
-    vscode.window.showInformationMessage('Generating unit test...')
-    const editor = vscode.window.activeTextEditor
-    if (editor && output) {
-      await vscode.env.clipboard.writeText(await output)
-      vscode.window.showInformationMessage(
-        'Unit test is copied in your clipboard. Kindly Paste it in your existing file',
-      )
-    } else {
-      vscode.window.showErrorMessage(
-        'Invalid input. Please Type "file name" or press "Escape".',
-      )
-    }
-  }
-}
-
-function getCodeFromActiveEditor(): string | undefined {
-  const editor = vscode.window.activeTextEditor
-  if (editor) {
-    const selections = editor.selections
-    console.log('selections: ', selections)
-    if (selections.length > 1) {
-      const highlightedCodeSnippets: string[] = []
-      selections.forEach((selection) => {
-        const highlightedCode = editor.document.getText(selection)
-        highlightedCodeSnippets.push(highlightedCode)
-      })
-      return highlightedCodeSnippets.join('\n')
-    }
-    console.log('whole code: ', editor.document.getText())
-    return editor.document.getText()
-  }
-  vscode.window.showErrorMessage('No active text editor found.')
-  return undefined
-}
-
-async function generateUnitTest(
-  code: string | undefined,
-  framework: string | undefined,
-): Promise<string> {
-  const prompt = `Generate a complete usable unit test given the method:
-	\`\`\`
-	${code}
-	\`\`\`
-	using ${framework}
-	\`\`\`
-	that adheres to the proper conventions of writing unit test and return just the unit test without any addition information.`
-  if (code) {
-    try {
-      const response = await gptRequestHandler(prompt)
-      vscode.window.showInformationMessage(
-        'Received response from OpenAI: ' + response,
-      )
-      return response
-    } catch (error) {
-      vscode.window.showErrorMessage('Error: ' + error)
-    }
-  }
-  return ''
+  registerUtils.registerGenerateUnitTestCommand(
+    context,
+    'utei.generateCppIgloo',
+    registerUtils.Framework.Igloo,
+  )
+  registerUtils.registerGenerateUnitTestCommand(
+    context,
+    'utei.generateCppCppUnit',
+    registerUtils.Framework.CppUnit,
+  )
+  registerUtils.registerGenerateUnitTestImprovedVersionCommand(
+    context,
+    'utei.generateImprovedVersion',
+  )
+  registerUtils.registerInputApiKeyCommand(context, 'utei.askForApiKey')
 }
