@@ -63,14 +63,37 @@ export function registerGenerateUnitTestCommand(
   framework: Framework,
 ) {
   const disposable = vscode.commands.registerCommand(command, async () => {
-    const code = fileHandlerUtils.getCodeFromActiveEditor()
-    if (code) {
-      try {
-        const output = unitTestGenerator.generateUnitTest(code, framework)
-        fileHandlerUtils.promptForOutputDestination(output)
-      } catch (error) {
-        vscode.window.showErrorMessage('Error: ' + error)
+    const editor = vscode.window.activeTextEditor
+    let code
+    let output
+    try {
+      if (editor) {
+        const selection = editor.selection
+        if (!selection.isEmpty) {
+          code = fileHandlerUtils.getCodeFromActiveEditorSelection()
+          output = unitTestGenerator.generateUnitTestSelection(code, framework)
+        } else {
+          code = fileHandlerUtils.getCodeFromActiveEditorComplete()
+          output = unitTestGenerator.generateUnitTestComplete(code, framework)
+        }
+        if (output) {
+          const lines = (await output).split('\n')
+          if (lines[0].charAt(1) === '`') {
+            console.log('FIRST LINE: ', lines[0].charAt(1))
+            lines.shift()
+          }
+          if (lines[lines.length - 1].charAt(1) === '`') {
+            console.log('LAST LINE: ', lines[lines.length - 1].charAt(1))
+            lines.pop()
+          }
+          const cleanedOutput = Promise.resolve(lines.join('\n'))
+          fileHandlerUtils.promptForOutputDestination(cleanedOutput)
+        } else {
+          vscode.window.showErrorMessage('No valid input.')
+        }
       }
+    } catch (error) {
+      vscode.window.showErrorMessage('Error: ' + error)
     }
   })
 
@@ -82,7 +105,16 @@ export function registerGenerateUnitTestImprovedVersionCommand(
   command: string,
 ) {
   const disposable = vscode.commands.registerCommand(command, async () => {
-    const code = fileHandlerUtils.getCodeFromActiveEditor()
+    const editor = vscode.window.activeTextEditor
+    let code
+    if (editor) {
+      const selection = editor.selection
+      if (!selection.isEmpty) {
+        code = fileHandlerUtils.getCodeFromActiveEditorSelection()
+      } else {
+        code = fileHandlerUtils.getCodeFromActiveEditorComplete()
+      }
+    }
     console.log('CODE: ', code)
     if (code) {
       try {
@@ -180,6 +212,9 @@ export function registerInputApiKeyCommand(
     })
     if (userInput) {
       process.env.OPENAI_API_KEY = userInput
+      vscode.window.showInformationMessage(
+        'API Key was registered successfuly.',
+      )
     }
   })
 
