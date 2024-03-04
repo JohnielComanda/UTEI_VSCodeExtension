@@ -46,16 +46,15 @@ export async function promptForOutputDestination(output: Promise<string>) {
 export function getCodeFromActiveEditor(): string | undefined {
   const editor = vscode.window.activeTextEditor
   if (editor) {
-    const selections = editor.selections
-    if (selections.length > 1) {
-      const highlightedCodeSnippets: string[] = []
-      selections.forEach((selection) => {
-        const highlightedCode = editor.document.getText(selection)
-        highlightedCodeSnippets.push(highlightedCode)
-      })
-      return highlightedCodeSnippets.join('\n')
+    const selection = editor.selection
+    if (!selection.isEmpty) {
+      const start = selection.active
+      const end = selection.anchor
+      const range = new vscode.Range(start, end)
+      return editor.document.getText(range)
+    } else {
+      return editor.document.getText()
     }
-    return editor.document.getText()
   }
   vscode.window.showErrorMessage('No active text editor found.')
   return undefined
@@ -65,15 +64,27 @@ export async function replaceCodeFromActiveEditor(output: Promise<string>) {
   const editor = vscode.window.activeTextEditor
   const response = await output
   if (editor && response) {
-    await editor.edit((editBuilder) => {
-      const document = editor.document
-      const lastLine = document.lineAt(document.lineCount - 1)
-      const range = new vscode.Range(
-        new vscode.Position(0, 0),
-        lastLine.range.end,
+    const selection = editor.selection
+    if (!selection.isEmpty) {
+      await editor.edit((editBuilder) => {
+        editBuilder.replace(selection, response)
+      })
+      vscode.window.showInformationMessage(
+        'Successfully replaced the selected code with its enhanced version',
       )
-      editBuilder.replace(range, response)
-    })
+    } else {
+      await editor.edit((editBuilder) => {
+        const document = editor.document
+        const lastLine = document.lineAt(document.lineCount - 1)
+        const range = new vscode.Range(
+          new vscode.Position(0, 0),
+          lastLine.range.end,
+        )
+        console.log('RANGE', range)
+        editBuilder.replace(range, response)
+      })
+    }
+
     vscode.window.showInformationMessage(
       'Successfully replaced the existing code with its enhanced version',
     )

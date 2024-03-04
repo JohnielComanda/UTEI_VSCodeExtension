@@ -87,7 +87,13 @@ export function registerGenerateUnitTestImprovedVersionCommand(
     if (code) {
       try {
         const output = unitTestGenerator.generateUnitTestImprovedVersion(code)
-        fileHandlerUtils.replaceCodeFromActiveEditor(output)
+        if ((await output) == code) {
+          vscode.window.showInformationMessage(
+            'No Enhance Version - Unit Test is efficient enough',
+          )
+        } else {
+          fileHandlerUtils.replaceCodeFromActiveEditor(output)
+        }
       } catch (error) {
         vscode.window.showErrorMessage('Error: ' + error)
       }
@@ -101,54 +107,64 @@ export function registerIdentifyEfficiencyCommand(
   command: string,
 ) {
   const disposable = vscode.commands.registerCommand(command, async () => {
-    const editor = vscode.window.activeTextEditor;
+    const editor = vscode.window.activeTextEditor
     if (editor) {
       // Get the selection (Highlighted text)
-      const selectionEditor = editor.selection;
-      const highlightedText = editor.document.getText(selectionEditor);
-      console.log('Highlightedtext: ', highlightedText);
-      const rating = efficiencyIdentifier.identifyEfficiency(highlightedText);
-      rating.then(resolvedRating => {
+      const selectionEditor = editor.selection
+      const highlightedText = editor.document.getText(selectionEditor)
+      console.log('Highlightedtext: ', highlightedText)
+      const rating = efficiencyIdentifier.identifyEfficiency(highlightedText)
+      rating.then((resolvedRating) => {
         // Print resolved value of the Promise
-        console.log("Resolved rating:", resolvedRating);
+        console.log('Resolved rating:', resolvedRating)
         // Get the first character of the rating
-        const ratingNumber: string = resolvedRating[0];
-        const ratingNumberInt: number = parseInt(ratingNumber, 10); // Base 10
-        console.log("First character of the rating:", ratingNumber);
+        const ratingNumber: string = resolvedRating[0]
+        const ratingNumberInt: number = parseInt(ratingNumber, 10) // Base 10
+        console.log('First character of the rating:', ratingNumber)
         if (resolvedRating == '-1') {
-          vscode.window.showInformationMessage(`Invalid Unit Test`,)
-        }
-        else {
-          vscode.window.showInformationMessage(
-            `Efficiency Rating: ${resolvedRating}`,
-            'Enhanced Unit Test',
-          ).then(async (selection) => {
-            if (selection === 'Enhanced Unit Test') {
-              if (ratingNumberInt >= 4) {
-                vscode.window.showInformationMessage('No Enhance Version - Unit Test is efficient enough');
+          vscode.window.showInformationMessage(`Invalid Unit Test`)
+        } else {
+          vscode.window
+            .showInformationMessage(
+              `Efficiency Rating: ${resolvedRating}`,
+              'Enhanced Unit Test',
+            )
+            .then(async (selection) => {
+              if (selection === 'Enhanced Unit Test') {
+                if (ratingNumberInt >= 4) {
+                  vscode.window.showInformationMessage(
+                    'No Enhance Version - Unit Test is efficient enough',
+                  )
+                } else {
+                  const enhancedVersion =
+                    await efficiencyIdentifier.generateEnhancedVersion(
+                      highlightedText,
+                      resolvedRating,
+                    )
+                  // Update the text
+                  editor
+                    .edit((editBuilder) => {
+                      editBuilder.replace(selectionEditor, enhancedVersion)
+                    })
+                    .then((success) => {
+                      if (success) {
+                        console.log('Text updated successfully!')
+                      } else {
+                        console.log('Failed to update text.')
+                      }
+                    })
+                  vscode.window.showInformationMessage(
+                    'Unit Test successfully replaced',
+                  )
+                }
               }
-              else {
-                const enhancedVersion = await efficiencyIdentifier.generateEnhancedVersion(highlightedText, resolvedRating);
-                // Update the text
-                editor.edit(editBuilder => {
-                  editBuilder.replace(selectionEditor, enhancedVersion);
-                }).then(success => {
-                  if (success) {
-                    console.log("Text updated successfully!");
-                  } else {
-                    console.log("Failed to update text.");
-                  }
-                });
-                vscode.window.showInformationMessage('Unit Test successfully replaced');
-              }
-            }
-          });
+            })
         }
-      });
+      })
     } else {
-      vscode.window.showInformationMessage("No text editor is active");
+      vscode.window.showInformationMessage('No text editor is active')
     }
-  });
+  })
   context.subscriptions.push(disposable)
 }
 

@@ -14,7 +14,7 @@ export async function generateUnitTest(
       \`\`\`
       using ${framework}
       \`\`\`
-      that adheres to the proper conventions of writing unit test and return just the unit test ready and usable for working codebase that has an import statements and without any additional information and comments. If the code is not unit testable just respond with -1 with no other information and comments`
+      that adheres to the proper conventions of writing unit test and return just the unit test ready and usable for working codebase that has an import statements and without any additional information and comments.`
   if (code) {
     try {
       const response = await gptRequestHandler(prompt)
@@ -38,7 +38,7 @@ export async function generateUnitTestImprovedVersion(
       \`\`\`
       ${code}
       \`\`\`
-      that adheres to the proper conventions and return a complete and without any additional information and comments. If the code is not a unit test just respond with -1 with no other information and comments`
+      that adheres to the proper conventions and return a complete and without any additional information and comments.`
   if (code) {
     try {
       const response = await gptRequestHandler(prompt)
