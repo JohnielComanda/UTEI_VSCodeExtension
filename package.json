@@ -22,6 +22,10 @@
         "title": "Generate Enhanced Version"
       },
       {
+        "command": "utei.identifyEfficiency",
+        "title": "Identify Efficiency"
+      },
+      {
         "command": "utei.generateCSharpNUnit",
         "title": "NUnit"
       },
@@ -166,6 +170,10 @@
       "editor/context": [
         {
           "command": "utei.generateImprovedVersion",
+          "group": "navigation"
+        },
+        {
+          "command": "utei.identifyEfficiency",
           "group": "navigation"
         },
         {

@@ -190,5 +190,11 @@ export function activate(context: vscode.ExtensionContext) {
     context,
     'utei.generateImprovedVersion',
   )
-  registerUtils.registerInputApiKeyCommand(context, 'utei.askForApiKey')
+  registerUtils.registerIdentifyEfficiencyCommand(
+    context,
+    'utei.identifyEfficiency',
+  )
+  registerUtils.registerInputApiKeyCommand(context, 
+    'utei.askForApiKey'
+  )
 }

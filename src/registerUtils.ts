@@ -1,6 +1,7 @@
 import * as vscode from 'vscode'
 import * as fileHandlerUtils from './fileHandlerUtils'
 import * as unitTestGenerator from './unitTestGenerator'
+import * as efficiencyIdentifier from './identifyEfficiency'
 import * as dotenv from 'dotenv'
 
 dotenv.config({ path: 'C:\\Users\\Johniel\\utei\\.env' })
@@ -92,6 +93,62 @@ export function registerGenerateUnitTestImprovedVersionCommand(
       }
     }
   })
+  context.subscriptions.push(disposable)
+}
+
+export function registerIdentifyEfficiencyCommand(
+  context: vscode.ExtensionContext,
+  command: string,
+) {
+  const disposable = vscode.commands.registerCommand(command, async () => {
+    const editor = vscode.window.activeTextEditor;
+    if (editor) {
+      // Get the selection (Highlighted text)
+      const selectionEditor = editor.selection;
+      const highlightedText = editor.document.getText(selectionEditor);
+      console.log('Highlightedtext: ', highlightedText);
+      const rating = efficiencyIdentifier.identifyEfficiency(highlightedText);
+      rating.then(resolvedRating => {
+        // Print resolved value of the Promise
+        console.log("Resolved rating:", resolvedRating);
+        // Get the first character of the rating
+        const ratingNumber: string = resolvedRating[0];
+        const ratingNumberInt: number = parseInt(ratingNumber, 10); // Base 10
+        console.log("First character of the rating:", ratingNumber);
+        if (resolvedRating == '-1') {
+          vscode.window.showInformationMessage(`Invalid Unit Test`,)
+        }
+        else {
+          vscode.window.showInformationMessage(
+            `Efficiency Rating: ${resolvedRating}`,
+            'Enhanced Unit Test',
+          ).then(async (selection) => {
+            if (selection === 'Enhanced Unit Test') {
+              if (ratingNumberInt >= 4) {
+                vscode.window.showInformationMessage('No Enhance Version - Unit Test is efficient enough');
+              }
+              else {
+                const enhancedVersion = await efficiencyIdentifier.generateEnhancedVersion(highlightedText, resolvedRating);
+                // Update the text
+                editor.edit(editBuilder => {
+                  editBuilder.replace(selectionEditor, enhancedVersion);
+                }).then(success => {
+                  if (success) {
+                    console.log("Text updated successfully!");
+                  } else {
+                    console.log("Failed to update text.");
+                  }
+                });
+                vscode.window.showInformationMessage('Unit Test successfully replaced');
+              }
+            }
+          });
+        }
+      });
+    } else {
+      vscode.window.showInformationMessage("No text editor is active");
+    }
+  });
   context.subscriptions.push(disposable)
 }
 
