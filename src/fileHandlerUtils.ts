@@ -43,18 +43,23 @@ export async function promptForOutputDestination(output: Promise<string>) {
   }
 }
 
-export function getCodeFromActiveEditor(): string | undefined {
+export function getCodeFromActiveEditorComplete(): string | undefined {
+  const editor = vscode.window.activeTextEditor
+  if (editor) {
+    return editor.document.getText()
+  }
+  vscode.window.showErrorMessage('No active text editor found.')
+  return undefined
+}
+
+export function getCodeFromActiveEditorSelection(): string | undefined {
   const editor = vscode.window.activeTextEditor
   if (editor) {
     const selection = editor.selection
-    if (!selection.isEmpty) {
-      const start = selection.active
-      const end = selection.anchor
-      const range = new vscode.Range(start, end)
-      return editor.document.getText(range)
-    } else {
-      return editor.document.getText()
-    }
+    const start = selection.active
+    const end = selection.anchor
+    const range = new vscode.Range(start, end)
+    return editor.document.getText(range)
   }
   vscode.window.showErrorMessage('No active text editor found.')
   return undefined
@@ -69,9 +74,6 @@ export async function replaceCodeFromActiveEditor(output: Promise<string>) {
       await editor.edit((editBuilder) => {
         editBuilder.replace(selection, response)
       })
-      vscode.window.showInformationMessage(
-        'Successfully replaced the selected code with its enhanced version',
-      )
     } else {
       await editor.edit((editBuilder) => {
         const document = editor.document
@@ -84,7 +86,6 @@ export async function replaceCodeFromActiveEditor(output: Promise<string>) {
         editBuilder.replace(range, response)
       })
     }
-
     vscode.window.showInformationMessage(
       'Successfully replaced the existing code with its enhanced version',
     )
