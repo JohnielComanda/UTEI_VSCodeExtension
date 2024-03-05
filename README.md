@@ -19,7 +19,7 @@ Whether you’re a seasoned developer or just starting out, TestMate is your ult
 This step is specifically for users who already have an existing subscription to ChatGpt. You have the option to use your own API key or utilize our free version. Or you can get your API Key ready from here: [OpenAI](https://platform.openai.com/account/api-keys)
 
 Click CTRL + SHIFT + P  --->>> Type and Select Enter OpenAI Api key
-![API key cmd](images/api_key_cmd.png)
+![Imgur](https://i.imgur.com/o181XUf.png)
 
 Enter your API key
 ![API key input](images/api_key_input.png)
