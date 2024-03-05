@@ -1,71 +1,70 @@
-# utei README
+# <center>**TestMate**</center>
 
-This is the README for your extension "utei". After writing up a brief description, we recommend including the following sections.
+<center>**Streamlining Unit Testing with AI as a Visual Studio Code Extension**</center>
 
-## Features
+As software developers, we understand the importance of efficient unit testing. That’s why we’ve created TestMate, a powerful Visual Studio Code extension designed to enhance your testing process. Here’s how it works:
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+1. High-Quality Unit Test Generation: TestMate integrates OpenAI to automatically generate high-quality unit tests for your code. Say goodbye to manual test writing – let AI do the heavy lifting!
 
-For example if there is an image subfolder under your extension project workspace:
+2. Efficiency Assessment: Not sure if your existing unit tests are up to par? TestMate analyzes your test suite and provides insights into its efficiency. Identify areas for improvement and optimize your testing strategy.
 
-\!\[feature X\]\(images/feature-x.png\)
+3. Enhanced Test Versions: TestMate doesn’t stop at analysis – it also suggests enhanced versions of your existing unit tests. Elevate your test coverage and reliability effortlessly.
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+Whether you’re a seasoned developer or just starting out, TestMate is your ultimate testing companion. Try it today and experience faster, more efficient unit testing! 🚀
 
-## Requirements
+## <center>**How it works!**</center>
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+### <center>**(Optional) Setup API key**</center>
 
-## Extension Settings
+This step is specifically for users who already have an existing subscription to ChatGpt. You have the option to use your own API key or utilize our free version. Or you can get your API Key ready from here: [OpenAI](https://platform.openai.com/account/api-keys)
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
+Click CTRL + SHIFT + P  --->>> Type and Select Enter OpenAI Api key
+![API key cmd](images/api_key_cmd.png)
 
-For example:
+Enter your API key
+![API key input](images/api_key_input.png)
 
-This extension contributes the following settings:
+This will show after successfully inputing your API key
+![Success Output](images/api_key_input_success.png)
 
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
+###<center>**Generating Unit Tests**</center>
 
-## Known Issues
+Our system intelligently analyzes entire code files, considering the code structure, function signatures, and underlying logic. It automatically generates comprehensive unit tests that cover various scenarios within the entire file. This holistic approach ensures thorough test coverage, minimizing the risk of undetected defects.
 
-Calling out known issues can help limit users opening duplicate issues against your extension.
+CTRL + A (To select the whole text Or you can just select a certain function or method that you want to generate a unit tests) 
+ --->>> Right Click --->>> Select Generate Unit Test --->> Select what framework you will use
+ ![Generate Unit Tests First Step](images/generate_unit_tests_select_framework.png)
 
-## Release Notes
+After that you will be prompt to either create a new file or just copy the unit tests in your clipboard.
+![Generate Unit Tests New File](images/generate_unit_tests_create_new_file.png)
 
-Users appreciate release notes as you update your extension.
+And it will automatically create a new file for you with the unit tests on it.
+![Generate Unit Tests Final Output](images/generate_unit_tests_final_output.png)
 
-### 1.0.0
+###<center>**Identifying Efficiency**</center>
 
-Initial release of ...
+Our system incorporates advanced techniques to evaluate the efficiency of unit tests. By assessing various factors, we provide developers with valuable insights into the quality and effectiveness of their test suites. Here are the key components of our unit test efficiency identification feature:
 
-### 1.0.1
+First Highligh the unit test you want to be rated --->>> Right Click --->>> Select Identify Efficiency
+![Identify Efficiency Menu](images/identify_efficiency_menu.png)
 
-Fixed issue #.
+Upon analyzing a unit test, our system assigns a rating on a scale from 1 to 5, with 5 being the most efficient and 1 indicating room for improvement. The rating considers multiple dimensions, including code coverage, assertion quality, and test case diversity. Developers can quickly gauge the overall effectiveness of their existing unit tests based on this rating. Alongside the rating, TestMate provides a concise summary that explains the rationale behind the assessment. The summary highlights specific strengths and weaknesses observed in the test suite.
+![Identify Efficiency Menu](images/identify_efficiency_result.png)
 
-### 1.1.0
+If the rating is below 4, it will generate an enhanced version of the unit test and automatically update your code. If the rating is 3 or above, no further unit test will be generated.
 
-Added features X, Y, and Z.
+###<center>**Generate Enhaced Version**</center>
 
----
+TestMate offers an optional feature for users who prefer optimizing their entire code file at once instead of generating individual unit tests. This streamlined functionality enables comprehensive improvements across the codebase in a single operation, minimizing the need for manual intervention.
 
-## Following extension guidelines
+Highlight the code you want to enhance --->>> Click Generate Enhance Version
+![Identify Efficiency Menu](images/identify_efficiency_menu.png)
 
-Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
+And it will automatically update your code
+![Identify Efficiency Menu](images/generate_enhanced_version_final_output.png)
 
-* [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
+And that concludes the process of our extension. We appreciate your time and effort in working through this task. To further enhance this extension, we kindly request that you take a moment to answer our survey. Your feedback will help us improve the system. Thank you! 😊
 
-## Working with Markdown
+[Survey Link](https://forms.office.com/r/TsvLWR24fk)
 
-You can author your README using Visual Studio Code. Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux).
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux).
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets.
-
-## For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
+**Enjoy and happy coding!**
